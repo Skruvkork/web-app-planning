@@ -62,7 +62,6 @@ class Shoppinglist {
 		request.open(method, url, true);
 		request.onreadystatechange = () => {
 			if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-				console.log(request.responseText);
 				const response = JSON.parse(request.responseText);
 				this.items = response.data;
 				this.render();
@@ -91,11 +90,6 @@ class Shoppinglist {
 		})
 		const request = new XMLHttpRequest();
 		request.open('DELETE', 'api/index.php/shoppinglist/' + eventID, true);
-		request.onreadystatechange = () => {
-			if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-				this.getItems();
-			}
-		}
 		request.send();
 		this.render();
 	}

@@ -1,0 +1,22 @@
+.activities-form {
+	padding: 5px;
+	transition: 0.4s;
+	overflow-y: hidden;
+}
+.activities-form.hidden {
+	display: none;
+}
+.activities-form textarea {
+	resize: vertical;
+}
+.activity:hover {
+	background: #efefef;
+	/*cursor: pointer;*/
+}
+.activity .header {
+	font-weight: bold;
+}
+.activity hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,12 @@
+.shoppinglist-form {
+	padding: 5px;
+	transition: 0.4s;
+	overflow-y: hidden;
+}
+.shoppinglist-form input {
+	margin: 3px;
+}
+
+.shopping-list em {
+	font-size: 0.9em;
+}

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vad ska vi göra idag?</title>
 <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=PT+Serif|Overpass" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/calendar.css">
 <link rel="stylesheet" href="css/shoppinglist.css">
@@ -14,12 +15,12 @@
 <!--<div class="page-header">
 	<h1>Vad ska vi göra idag?</h1>
 </div>-->
-<div class="container">
+<main class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<section class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Aktiviteter <span id="activity-date-display"></span></h4>
+					<h1>Aktiviteter <span id="activity-date-display"></span></h1>
 				</div>
 				<ul class="list-group activities" id="activities"></ul>
 				<form method="POST" name="activities-form" id="activities-form" class="form activities-form">
@@ -27,10 +28,10 @@
 						<label for="title">Titel</label>
 						<input type="text" class="form-control" name="title" />
 					</div>
-					<div class="form-group">
+					<!--<div class="form-group">
 						<label for="time">Tid</label>
 						<input type="time" class="form-control" name="time" pattern="[0-9]"/>
-					</div>
+					</div>-->
 					<div class="form-group">
 						<label for="description">Övrig info</label>
 						<textarea class="form-control" rows="4" name="description"></textarea>
@@ -38,14 +39,14 @@
 					<button type="submit" class="btn btn-success">Lägg till</button>
 				</form>
 			</div>
-		</div>
-		<div class="col-md-4">
+		</section>
+		<section class="col-md-4">
 			<div class="calendar" id="calendar">
 				<div class="calendar-heading">
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					</button>
-					<h4> <span id="month"></span> <span id="year"></span></h4>
+					<h1> <span id="month"></span> <span id="year"></span></h1>
 					<button class="btn btn-default">
 						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					</button>
@@ -53,11 +54,11 @@
 				<div class="weekdays"></div>
 				<div class="month-display" id="month-display"></div>
 			</div>
-		</div>
-		<div class="col-md-4">
+		</section>
+		<section class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4>Inköpslista</h4>
+					<h1>Inköpslista</h1>
 				</div>
 				<ul class="list-group shopping-list" id="shopping-list"></ul>
 				<form method="POST" name="shoppinglist-form" id="shoppinglist-form" class="form-inline shoppinglist-form">
@@ -68,12 +69,12 @@
 					<button type="submit" class="btn btn-success">Lägg till</button>
 				</form>
 			</div>
-		</div>
+		</section>
 	</div>
+</main>
 <script src="js/calendar.js"></script>
 <script src="js/shoppinglist.js"></script>
 <script src="js/activities.js"></script>
 <script src="js/main.js"></script>
-</div>
 </body>
 </html>

@@ -2,8 +2,7 @@
 include_once('config.php');
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
-$input = [];
-parse_str(file_get_contents('php://input'), $input);
+$input = json_decode(file_get_contents('php://input'));
 $collection = array_shift($request);
 
 $resource;
@@ -18,4 +17,4 @@ switch($collection) {
 		break;
 }
 
-echo json_encode(Array('data' => $resource->$method(), 'debug' => $request));
+echo json_encode(Array('data' => $resource->$method(), 'debug' => array('request' => $request, 'input' => $input)));

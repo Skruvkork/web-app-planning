@@ -38,6 +38,20 @@ class Activities {
 		}
 	}
 
+	function PUT() {
+		$query = "UPDATE events
+		          SET title = '{$this->input->title}', `date`= '{$this->input->date}', description = '{$this->input->description}'
+				  WHERE id = {$this->input->id}";
+		
+		if (mysqli_query($this->conn, $query)) {
+			http_response_code(200);
+		}
+		else {
+			http_response_code(400);
+			return mysqli_error($this->conn);
+		}
+	}
+
 	function DELETE() {
 		$query = "DELETE FROM events WHERE id = '{$this->request[0]}'";
 		if (mysqli_query($this->conn, $query)) {

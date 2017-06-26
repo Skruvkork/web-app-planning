@@ -154,12 +154,8 @@ class Shoppinglist {
 		button.id = 'toggle';
 		button.className = 'btn btn-primary';
 		button.addEventListener('click', this.handleClick.bind(this));
+		button.innerHTML = '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>';
 
-		let icon = document.createElement('span');
-		icon.className = 'glyphicon glyphicon-plus pull-right';
-		icon.attributes.ariaHidden = true;
-
-		button.appendChild(icon);
 		listItem.appendChild(button);
 		list.appendChild(listItem);
 	}

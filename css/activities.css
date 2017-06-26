@@ -9,14 +9,22 @@
 .activities-form textarea {
 	resize: vertical;
 }
-.activity:hover {
-	background: #efefef;
-	/*cursor: pointer;*/
-}
 .activity .header {
 	font-weight: bold;
 }
-.activity hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.activity {
+	padding-top: 0;
+	padding-bottom: 20px;
+}
+.activity p {
+	font-family: 'PT Serif', serif;
+}
+.activity button {
+	position: relative;
+	top: 0;
+	right: 0;
+}
+
+.activity .editing {
+	border: 2px solid #29f;
 }

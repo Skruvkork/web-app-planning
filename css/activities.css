@@ -9,9 +9,6 @@
 .activities-form textarea {
 	resize: vertical;
 }
-.activity .header {
-	font-weight: bold;
-}
 .activity {
 	padding-top: 0;
 	padding-bottom: 20px;

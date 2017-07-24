@@ -21,8 +21,8 @@ class Calendar {
 	}
 
 	addListeners() {
-		const monthDisplay = document.querySelector('.month-display');
-		const controlButtons = document.querySelectorAll('.calendar-heading button');
+		var monthDisplay = document.querySelector('.month-display');
+		var controlButtons = document.querySelectorAll('.calendar-heading button');
 		controlButtons.forEach(button => button.addEventListener('click', (e) => {
 			e.stopPropagation();
 			if (e.currentTarget.firstElementChild.classList.contains('glyphicon-chevron-left')) {
@@ -32,7 +32,7 @@ class Calendar {
 				this.changeMonth(1);
 			}
 		}))
-		const newActivity = document.querySelector('.new-activity');
+		var newActivity = document.querySelector('.new-activity');
 		monthDisplay.addEventListener('click', this.handleClick.bind(this));
 		// monthDisplay.addEventListener('wheel', this.handleScroll.bind(this));
 	}
@@ -57,13 +57,13 @@ class Calendar {
 	}
 
 	getDaysOfMonth(month) {
-		const nextMonth = month + 1;
+		var nextMonth = month + 1;
 		return new Date(this.year, nextMonth, 0).getDate();
 	}
 
 	getActivities() {
-		let month = '0' + (this.month + 1); //Leading zeros for the sake of SQL
-		let dateString = `${this.year}/${month.slice(0,2)}`;
+		var month = '0' + (this.month + 1); //Leading zeros for the sake of SQL
+		var dateString = `${this.year}/${month.slice(0,2)}`;
 		fetch(`api/index.php/activities/${dateString}`)
 			.then(response => response.json())
 			.then(response => {
@@ -73,8 +73,8 @@ class Calendar {
 	}
 
 	getFirstDayNumberOfMonth(month) {
-		const year = this.date.getFullYear();
-		const day = new Date(year, month, 1).getDay();
+		var year = this.date.getFullYear();
+		var day = new Date(year, month, 1).getDay();
 		return day;
 	}
 
@@ -104,30 +104,30 @@ class Calendar {
 	}
 
 	renderWeekDays() {
-		const weekDays = document.querySelector('.weekdays');
+		var weekDays = document.querySelector('.weekdays');
 		var days = [];
 		this.days.forEach(day => {
-			let shortDay = day.slice(0, 3);
+			var shortDay = day.slice(0, 3);
 			days.push(`<div class="weekday">${shortDay}</div>`);
 		})
 		weekDays.innerHTML = days.join('');
 	}
 
 	renderDays() {
-		const calendar = document.querySelector('#month-display');
-		const daysOfMonth = this.getDaysOfMonth(this.month);
-		const startDay = this.getFirstDayNumberOfMonth(this.month);
+		var calendar = document.querySelector('#month-display');
+		var daysOfMonth = this.getDaysOfMonth(this.month);
+		var startDay = this.getFirstDayNumberOfMonth(this.month);
 		var days = [];
 		// if the month starts in the middle of the week
 		if (startDay > 1) {
-			const daysOfLastMonth = this.getDaysOfMonth(this.date.getMonth() + 1);
-			for (let i = 0; i < startDay -1; i++) {
+			var daysOfLastMonth = this.getDaysOfMonth(this.date.getMonth() + 1);
+			for (var i = 0; i < startDay -1; i++) {
 				days.push(`<div class="day inactive">${daysOfLastMonth - i}</div>`)
 			}
 			// Reverses array so the numbers are in <ascen></ascen>ding order
 			days.reverse();
 		}
-		for (let i = 1; i <= daysOfMonth; i++) {
+		for (var i = 1; i <= daysOfMonth; i++) {
 			var classes = 'day';
 			var content = i;
 			var today = new Date();
@@ -146,7 +146,7 @@ class Calendar {
 			days.push(`<div class="${classes}">${content}</div>`);
 		}
 		// fills the days array so the calendar is filled completely
-		for (let i = 1; days.length < 42; i++) {
+		for (var i = 1; days.length < 42; i++) {
 			days.push(`<div class="day inactive">${i}</div>`);
 		}
 		calendar.innerHTML = days.join('');

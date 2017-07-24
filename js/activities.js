@@ -19,7 +19,7 @@ class Activities {
 	}
 
 	addFormListeners() {
-		const form = document.querySelector('#activities-form');
+		var form = document.querySelector('#activities-form');
 		form.addEventListener('submit', (e) => {
 			e.preventDefault();
 			this.setActivity.bind(this);
@@ -35,21 +35,21 @@ class Activities {
 	}
 
 	addListeners() {
-		const editButtons = document.querySelectorAll('.activities .edit');
+		var editButtons = document.querySelectorAll('.activities .edit');
 		editButtons.forEach(button => {
 			button.addEventListener('mouseenter', (e) => e.target.classList.add('btn-primary'));
 			button.addEventListener('mouseleave', (e) => e.target.classList.remove('btn-primary'));
 			button.addEventListener('click', this.editActivity.bind(this));
 		})
 
-		const removeButtons = document.querySelectorAll('.activities .remove');
+		var removeButtons = document.querySelectorAll('.activities .remove');
 		removeButtons.forEach(button => {
 			button.addEventListener('mouseenter', (e) => e.target.classList.add('btn-danger'));
 			button.addEventListener('mouseleave', (e) => e.target.classList.remove('btn-danger'));
 			button.addEventListener('click', this.deleteActivity.bind(this));
 		})
 
-		const saveButtons = document.querySelectorAll('.activities .save');
+		var saveButtons = document.querySelectorAll('.activities .save');
 		if (saveButtons) {
 			saveButtons.forEach(button => {
 				button.addEventListener('mouseenter', (e) => e.target.classList.add('btn-success'));
@@ -58,7 +58,7 @@ class Activities {
 			})
 		}
 
-		const cancelButtons = document.querySelectorAll('.activities .cancel');
+		var cancelButtons = document.querySelectorAll('.activities .cancel');
 		if (cancelButtons) {
 			cancelButtons.forEach(button => {
 				button.addEventListener('mouseenter', (e) => e.target.classList.add('btn-danger'));
@@ -75,8 +75,8 @@ class Activities {
 	}
 
 	toggleForm() {
-		let form = document.querySelector('.activities-form');
-		let button = document.querySelector('#activities #toggle')
+		var form = document.querySelector('.activities-form');
+		var button = document.querySelector('#activities #toggle')
 		if (this.formVisible) {
 			this.formHeight = form.clientHeight;
 		}
@@ -85,12 +85,12 @@ class Activities {
 	}
 
 	resetForm() {
-		let form = document.querySelector('.activities-form').reset();
+		var form = document.querySelector('.activities-form').reset();
 	}
 
 	getActivities() {
-		let dateString = this.date.toLocaleDateString().replace(/-/g, '/');
-		let url = `api/index.php/activities/${dateString}`;
+		var dateString = this.date.toLocaleDateString().replace(/-/g, '/');
+		var url = `api/index.php/activities/${dateString}`;
 		fetch(url)
 			.then(response => response.json())
 			.then(response => {
@@ -102,11 +102,11 @@ class Activities {
 	}
 
 	setActivity() {
-		const form = document.forms['activities-form'];
-		let dateString = this.date.toLocaleDateString();
-		const data = new FormData(form);
+		var form = document.forms['activities-form'];
+		var dateString = this.date.toLocaleDateString();
+		var data = new FormData(form);
 		data.append('date', dateString);
-		const request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open('POST', 'api/index.php/activities', true);
 		request.onreadystatechange = () => {
 			if (request.status === 201 && request.readyState === XMLHttpRequest.DONE) {
@@ -121,15 +121,15 @@ class Activities {
 	}
 
 	editActivity(e) {
-		let target = e.target;
-		const targetID = target.id != '' ? target.id : target.parentNode.id;
+		var target = e.target;
+		var targetID = target.id != '' ? target.id : target.parentNode.id;
 
-		const element = document.querySelector(`#activity${targetID}`);
+		var element = document.querySelector(`#activity${targetID}`);
 
-		const header = element.querySelector('h2');
-		const input = element.querySelector('input');
-		const text = element.querySelector('p');
-		const buttons = element.querySelector('.buttons');
+		var header = element.querySelector('h2');
+		var input = element.querySelector('input');
+		var text = element.querySelector('p');
+		var buttons = element.querySelector('.buttons');
 
 		header.contentEditable = true;
 		input.type = 'date';
@@ -151,28 +151,28 @@ class Activities {
 	}
 
 	saveEdit(e) {
-		let target = e.target;
-		const targetID = target.id != '' ? target.id : target.parentNode.id;
+		var target = e.target;
+		var targetID = target.id != '' ? target.id : target.parentNode.id;
 
-		const element = document.querySelector(`#activity${targetID}`);
+		var element = document.querySelector(`#activity${targetID}`);
 
-		const header = element.querySelector('h2');
-		const input = element.querySelector('input');
-		const text = element.querySelector('p');
+		var header = element.querySelector('h2');
+		var input = element.querySelector('input');
+		var text = element.querySelector('p');
 
-		const editedActivity = this.activities.find(activity => activity.id === targetID);
+		var editedActivity = this.activities.find(activity => activity.id === targetID);
 		editedActivity.title = header.innerHTML;
 		editedActivity.date = input.value;
 		editedActivity.description = text.innerHTML;
 
-		const data = new FormData();
+		var data = new FormData();
 
 		data.append('title', header.innerHTML);
 		data.append('date', input.value);
 		data.append('description', text.innerHTML);
 		data.append('id', editedActivity.id);
 
-		const request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open('PUT', `api/index.php/activities/${editedActivity.id}`, true);
 		request.onreadystatechange = () => {
 			if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
@@ -187,15 +187,15 @@ class Activities {
 	}
 
 	cancelEdit(e) {
-		let target = e.target;
-		const targetID = target.id != '' ? target.id : target.parentNode.id;
+		var target = e.target;
+		var targetID = target.id != '' ? target.id : target.parentNode.id;
 
-		const element = document.querySelector(`#activity${targetID}`);
+		var element = document.querySelector(`#activity${targetID}`);
 
-		const header = element.querySelector('h2');
-		const input = element.querySelector('input');
-		const text = element.querySelector('p');
-		const buttons = element.querySelector('.buttons');
+		var header = element.querySelector('h2');
+		var input = element.querySelector('input');
+		var text = element.querySelector('p');
+		var buttons = element.querySelector('.buttons');
 
 		header.contentEditable = false;
 		input.type = 'hidden';
@@ -218,12 +218,12 @@ class Activities {
 	}
 
 	deleteActivity(e) {
-		let target = e.target;
-		const targetID = target.id != '' ? target.id : target.parentNode.id;
+		var target = e.target;
+		var targetID = target.id != '' ? target.id : target.parentNode.id;
 		this.activities = this.activities.filter(activity => {
 			return activity.id != targetID;
 		})
-		const request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open('DELETE', 'api/index.php/activities/' + targetID, true);
 		request.onreadystatechange = () => {
 			if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
@@ -242,10 +242,10 @@ class Activities {
 	}
 
 	render() {
-		const header = document.querySelector('#activity-date-display');
+		var header = document.querySelector('#activity-date-display');
 		header.innerHTML = this.date.toDateString() === new Date().toDateString() ? 'idag' : this.date.toLocaleDateString();
-		const list = document.querySelector('#activities');
-		const listItems = this.activities.map(activity => {
+		var list = document.querySelector('#activities');
+		var listItems = this.activities.map(activity => {
 			return `<li class="list-group-item activity" id="activity${activity.id}">
 						<h2 class="header">${activity.title}</h2>
 						<input class="date-input" type="hidden" value="${activity.date}" />
@@ -264,10 +264,10 @@ class Activities {
 		})
 		list.innerHTML = listItems.join('');
 
-		let listItem = document.createElement('li');
+		var listItem = document.createElement('li');
 		listItem.className = 'list-group-item';
 
-		let button = document.createElement('button');
+		var button = document.createElement('button');
 		button.className = 'btn btn-primary';
 		button.id = 'toggle';
 		button.addEventListener('click', this.handleClick.bind(this));

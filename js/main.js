@@ -1,7 +1,7 @@
 window.onload = function() {
-	const cal = new Calendar(new Date(), switchDay);
-	const shoppinglist = new Shoppinglist();
-	const activities = new Activities(cal.date, updateCalendar.bind(cal));
+	var cal = new Calendar(new Date(), switchDay);
+	var shoppinglist = new Shoppinglist();
+	var activities = new Activities(cal.date, updateCalendar.bind(cal));
 
 	cal.init();
 	shoppinglist.init();
@@ -17,7 +17,7 @@ window.onload = function() {
 }
 
 function toggleForm(form, button, parent) {
-	let buttonIcon = button.firstChild;
+	var buttonIcon = button.firstChild;
 	button.classList.toggle('btn-primary');
 	button.classList.toggle('btn-danger');
 	buttonIcon.classList.toggle('glyphicon-plus');

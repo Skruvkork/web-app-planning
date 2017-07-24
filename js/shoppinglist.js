@@ -19,7 +19,7 @@ class Shoppinglist {
 	}
 
 	addListeners() {
-		let form = document.querySelector('#shoppinglist-form');
+		var form = document.querySelector('#shoppinglist-form');
 		form.addEventListener('submit', (e) => {
 			e.preventDefault();
 			this.addItem.bind(this);
@@ -37,8 +37,8 @@ class Shoppinglist {
 	//// FORM MANIPULATION
 
 	toggleForm() {
-		let form = document.querySelector('.shoppinglist-form');
-		let button = document.querySelector('#shopping-list #toggle')
+		var form = document.querySelector('.shoppinglist-form');
+		var button = document.querySelector('#shopping-list #toggle')
 		if (this.formVisible) {
 			this.formHeight = form.clientHeight;
 		}
@@ -47,7 +47,7 @@ class Shoppinglist {
 	}
 
 	resetForm() {
-		let form = document.querySelector('.shoppinglist-form').reset();
+		var form = document.querySelector('.shoppinglist-form').reset();
 	}
 
 	//// END FORM MANIPULATION
@@ -56,13 +56,13 @@ class Shoppinglist {
 	//// GET, POST DELETE
 
 	getItems() {
-		const request = new XMLHttpRequest(),
+		var request = new XMLHttpRequest(),
 			method = 'GET',
 			url = 'api/index.php/shoppinglist';
 		request.open(method, url, true);
 		request.onreadystatechange = () => {
 			if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-				const response = JSON.parse(request.responseText);
+				var response = JSON.parse(request.responseText);
 				this.items = response.data;
 				this.render();
 			}
@@ -71,9 +71,9 @@ class Shoppinglist {
 	}
 
 	addItem() {
-		const form = document.forms['shoppinglist-form'];
-		const data = new FormData(form);
-		const request = new XMLHttpRequest();
+		var form = document.forms['shoppinglist-form'];
+		var data = new FormData(form);
+		var request = new XMLHttpRequest();
 		request.open('POST', 'api/index.php/shoppinglist', true);
 		request.onreadystatechange = () => {
 			if (request.status === 201 && request.readyState === XMLHttpRequest.DONE) {
@@ -84,11 +84,11 @@ class Shoppinglist {
 	}
 
 	removeItem(e) {
-		const eventID = e.target.id != '' ? e.target.id : e.target.parentNode.id;
+		var eventID = e.target.id != '' ? e.target.id : e.target.parentNode.id;
 		this.items = this.items.filter(item => {
 			return item.id != eventID;
 		})
-		const request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open('DELETE', 'api/index.php/shoppinglist/' + eventID, true);
 		request.send();
 		this.render();
@@ -97,21 +97,21 @@ class Shoppinglist {
 	//// END GET, POST, DELETE
 
 	render() {
-		const list = document.querySelector('#shopping-list');
-		const app = this;
+		var list = document.querySelector('#shopping-list');
+		var app = this;
 		list.innerHTML = '';
 		this.items.forEach(item => {
 			// <li class="list-group-item">${item.title}</li>
-			let listItem = document.createElement('li');
+			var listItem = document.createElement('li');
 			listItem.className = 'list-group-item';
 			listItem.innerHTML = `${item.title} <em>Tillagd ${item.date_added}</em>`;
 
 			// <span class="pull-right"></span>
-			let span = document.createElement('span');
+			var span = document.createElement('span');
 			span.className = 'pull-right';
 
 			// <button class="btn btn-default" id="${item.id}" onclick="this.removeItem"></button>
-			let button = document.createElement('button');
+			var button = document.createElement('button');
 			button.className = 'btn btn-default';
 			button.id = item.id
 			button.addEventListener('click', this.removeItem.bind(this), false);
@@ -123,7 +123,7 @@ class Shoppinglist {
 			});
 
 			// <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
-			let icon = document.createElement('span');
+			var icon = document.createElement('span');
 			icon.className = 'glyphicon glyphicon-remove pull-right';
 			icon.attributes.ariaHidden = true;
 
@@ -147,10 +147,10 @@ class Shoppinglist {
 		})
 
 		// Create the last row with button to create new entries
-		let listItem = document.createElement('li');
+		var listItem = document.createElement('li');
 		listItem.className = 'list-group-item';
 
-		let button = document.createElement('button');
+		var button = document.createElement('button');
 		button.id = 'toggle';
 		button.className = 'btn btn-primary';
 		button.addEventListener('click', this.handleClick.bind(this));

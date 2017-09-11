@@ -74,7 +74,7 @@ class Calendar {
 
 	getFirstDayNumberOfMonth(month) {
 		var year = this.date.getFullYear();
-		var day = new Date(year, month, 1).getDay();
+		var day = new Date(year, month, 1).getUTCDay();
 		return day;
 	}
 
@@ -119,9 +119,9 @@ class Calendar {
 		var startDay = this.getFirstDayNumberOfMonth(this.month);
 		var days = [];
 		// if the month starts in the middle of the week
-		if (startDay > 1) {
+		if (startDay > 0) {
 			var daysOfLastMonth = this.getDaysOfMonth(this.date.getMonth() + 1);
-			for (var i = 0; i < startDay -1; i++) {
+			for (var i = 0; i < startDay; i++) {
 				days.push(`<div class="day inactive">${daysOfLastMonth - i}</div>`)
 			}
 			// Reverses array so the numbers are in <ascen></ascen>ding order

@@ -34,7 +34,6 @@ class Calendar {
 		}))
 		var newActivity = document.querySelector('.new-activity');
 		monthDisplay.addEventListener('click', this.handleClick.bind(this));
-		// monthDisplay.addEventListener('wheel', this.handleScroll.bind(this));
 	}
 
 	changeDay(day) {
@@ -80,10 +79,12 @@ class Calendar {
 	}
 
 	handleClick(e) {
-		if (e.target.classList.contains('day')) {
+		if (e.target.classList.contains('day') &&
+			!e.target.classList.contains('inactive')) {
 			this.changeDay(e.target.innerText);
 			this.switchDate(this.year, this.month, this.selectedDay);
-		} else if (e.target.parentNode.classList.contains('day')) {
+		} else if (e.target.parentNode.classList.contains('day') &&
+			!e.target.parentNode.classList.contains('inactive')) {
 			this.changeDay(e.target.parentNode.innerText);
 			this.switchDate(this.year, this.month, this.selectedDay);
 		}

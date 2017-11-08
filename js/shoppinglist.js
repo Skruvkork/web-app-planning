@@ -3,6 +3,7 @@ class Shoppinglist {
 		this.items = [];
 		this.formVisible = true;
 		this.formHeight;
+		this.confirm = false;
 	}
 
 	init() {
@@ -15,6 +16,19 @@ class Shoppinglist {
 	handleClick(e) {
 		if (e.target.nodeName === 'SPAN' || e.target.nodeName === 'BUTTON') {
 			this.toggleForm();
+		}
+	}
+
+	resetButtonIcons(e) {
+		if (this.confirm && !e.target.classList.contains('remove')) {
+			this.confirm = false;
+
+			const icons = document.querySelectorAll('.glyphicon-ok');
+
+			for (let i = 0; i < icons.length; i++) {
+				icons[i].classList.remove('glyphicon-ok');
+				icons[i].classList.add('glyphicon-remove');
+			}
 		}
 	}
 
@@ -31,7 +45,8 @@ class Shoppinglist {
 			if (e.target.style.height !== '0px') {
 				e.target.style.height = 'auto';
 			}
-		})
+		});
+		document.addEventListener('click', this.resetButtonIcons.bind(this));
 	}
 
 	//// FORM MANIPULATION
@@ -94,6 +109,19 @@ class Shoppinglist {
 		this.render();
 	}
 
+	confirmDelete(e) {
+		const icon = e.currentTarget.querySelector('.glyphicon');
+		if(icon.classList.contains('glyphicon-ok') && this.confirm) {
+			this.removeItem(e);
+			this.confirm = false;
+		}
+		else {
+			icon.classList.remove('glyphicon-remove');
+			icon.classList.add('glyphicon-ok');
+			this.confirm = true;
+		}
+	}
+
 	//// END GET, POST, DELETE
 
 	render() {
@@ -112,9 +140,9 @@ class Shoppinglist {
 
 			// <button class="btn btn-default" id="${item.id}" onclick="this.removeItem"></button>
 			var button = document.createElement('button');
-			button.className = 'btn btn-default';
+			button.className = 'btn btn-default remove';
 			button.id = item.id
-			button.addEventListener('click', this.removeItem.bind(this), false);
+			button.addEventListener('click', this.confirmDelete.bind(this), false);
 			button.addEventListener('mouseenter', (e)=> {
 				e.target.classList.add('btn-danger');
 			});
@@ -124,7 +152,7 @@ class Shoppinglist {
 
 			// <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
 			var icon = document.createElement('span');
-			icon.className = 'glyphicon glyphicon-remove pull-right';
+			icon.className = 'glyphicon glyphicon-remove pull-right remove';
 			icon.attributes.ariaHidden = true;
 
 			button.appendChild(icon);

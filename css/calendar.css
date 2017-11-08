@@ -42,7 +42,7 @@
 	border-color: #286090;
 }
 .day.inactive {
-	color: #999;
+	color: #fff;
 }
 .day:before {
 	content: '';
@@ -54,6 +54,12 @@
 	background: #cce3f9;
 	cursor: pointer;
 }
+
+.day.inactive:hover {
+	background: #fff;
+	cursor: auto;
+}
+
 .new-activity {
 	position: absolute;
 }

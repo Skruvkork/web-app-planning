@@ -128,7 +128,7 @@ class Activities {
 
 		var header = element.querySelector('h2');
 		var input = element.querySelector('input');
-		var text = element.querySelector('p');
+		var text = element.querySelector('.text');
 		var buttons = element.querySelector('.buttons');
 
 		header.contentEditable = true;
@@ -158,7 +158,7 @@ class Activities {
 
 		var header = element.querySelector('h2');
 		var input = element.querySelector('input');
-		var text = element.querySelector('p');
+		var text = element.querySelector('.text');
 
 		var editedActivity = this.activities.find(activity => activity.id === targetID);
 		editedActivity.title = header.innerHTML;
@@ -249,9 +249,9 @@ class Activities {
 			return `<li class="list-group-item activity" id="activity${activity.id}">
 						<h2 class="header">${activity.title}</h2>
 						<input class="date-input" type="hidden" value="${activity.date}" />
-						<p>
+						<div class="text">
 							${activity.description.replace(/\n/g, '<br/>')}
-						</p>
+						</div>
 						<div class="buttons">
 							<button id="${activity.id}" class="btn btn-default edit">
 								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ändra

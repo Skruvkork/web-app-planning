@@ -25,3 +25,8 @@
 .activity .editing {
 	border: 2px solid #29f;
 }
+
+
+.activity .text {
+	margin: 10px 0;
+}

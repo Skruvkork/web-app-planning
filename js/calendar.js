@@ -62,8 +62,9 @@ class Calendar {
 	}
 
 	getActivities() {
-		var month = '0' + (this.month + 1); //Leading zeros for the sake of SQL
-		var dateString = `${this.year}/${month.slice(0,2)}`;
+		var month = this.month + 1;
+		var month = month > 9 ? month: '0' + month; //Leading zeros for the sake of SQL
+		var dateString = `${this.year}/${month}`;
 		fetch(`api/index.php/activities/${dateString}`)
 			.then(response => response.json())
 			.then(response => {

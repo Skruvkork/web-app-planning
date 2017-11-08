@@ -18,6 +18,7 @@ window.onload = function() {
 
 function toggleForm(form, button, parent) {
 	var buttonIcon = button.firstChild;
+	form[0].focus();
 	button.classList.toggle('btn-primary');
 	button.classList.toggle('btn-danger');
 	buttonIcon.classList.toggle('glyphicon-plus');
